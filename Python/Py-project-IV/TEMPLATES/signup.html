@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            width: 300px;
+            padding: 16px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px #00000030;
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            color: #666;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-btn {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #007BFF;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm" action="http://localhost:5000/signup" method="post">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="input-group">
+                <label for="contact">Contact</label>
+                <input type="text" id="contact" name="contact" required>
+            </div>
+            <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function (event) {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm-password').value;
+        var contact = document.getElementById('contact').value;
+
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).*$/.test(username)) {
+            alert('Username must contain at least one uppercase letter, one lowercase letter, and one special character.');
+            event.preventDefault();
+        }
+
+        if (!/^\d{10}$/.test(contact)) {
+            alert('Contact must be exactly 10 digits.');
+            event.preventDefault();
+        }
+
+        if (password !== confirmPassword) {
+            alert('Password and confirm password must match.');
+            event.preventDefault();
+        }
+    });
+</script>
+
+</html>
